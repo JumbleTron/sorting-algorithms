@@ -12,7 +12,7 @@ function insertionSort(arr) {
 }
 
 const array = [5, 2, 4, 6, 1, 3];
-console.log(insertionSort(array));
+console.log('insertionSort', insertionSort(array));
 
 function selectionSort(arr) {
 	for (let i = 0; i < arr.length - 1; i++) {
@@ -22,33 +22,38 @@ function selectionSort(arr) {
 				minIndex = j;
 			}
 		}
-		if (minIndex !== i) {
-			[arr[i], arr[minIndex]] = [arr[minIndex], arr[i]];
-		}
+		const x = arr[minIndex];
+		arr[minIndex] = arr[i]
+		arr[i] = x;
 	}
 	return arr;
 }
 
 const array2 = [5, 2, 4, 6, 1, 3];
-console.log(selectionSort(array2));
+console.log('selectionSort', selectionSort(array2));
 
 function bubbleSort(arr) {
-	const length = arr.length;
-	for (let i = 0; i < length - 1; i++) {
-		for (let j = 0; j < length - 1 - i; j++) {
-			if (arr[j] > arr[j + 1]) {
-				[arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+	let n = arr.length;
+	while (n > 1) {
+		for (let i=0; i<n-1; i++) {
+			if (arr[i] > arr[i+1]) {
+				const next = arr[i+1];
+				arr[i+1] = arr[i]
+				arr[i] = next;
 			}
 		}
+		n--;
 	}
+
 	return arr;
 }
 
 const array3 = [5, 2, 4, 6, 1, 3];
-console.log(bubbleSort(array3));
+console.log('bubbleSort', bubbleSort(array3));
 
 function mergeSort(arr) {
-	if (arr.length <= 1) {
+	const n = arr.length;
+	if (n <= 1) {
 		return arr;
 	}
 
@@ -74,11 +79,11 @@ function merge(left, right) {
 		}
 	}
 
-	return result.concat(left.slice(leftIndex)).concat(right.slice(rightIndex));
+	return result.concat(left.slice(leftIndex), right.slice(rightIndex));
 }
 
 const array5 = [5, 2, 4, 6, 1, 3];
-console.log(mergeSort(array5));
+console.log('mergeSort', mergeSort(array5));
 
 function quickSort(arr) {
 	if (arr.length <= 1) {
@@ -103,4 +108,4 @@ function quickSort(arr) {
 	return quickSort(less).concat(equal, quickSort(greater));
 }
 const array4 = [5, 2, 4, 6, 1, 3];
-console.log(quickSort(array4));
+console.log('quickSort', quickSort(array4));

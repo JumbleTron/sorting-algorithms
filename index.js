@@ -46,3 +46,28 @@ function bubbleSort(arr) {
 
 const array3 = [5, 2, 4, 6, 1, 3];
 console.log(bubbleSort(array3));
+
+function quickSort(arr) {
+	if (arr.length <= 1) {
+		return arr;
+	}
+
+	const pivot = arr[Math.floor(Math.random() * arr.length)];
+	const less = [];
+	const equal = [];
+	const greater = [];
+
+	for (let element of arr) {
+		if (element < pivot) {
+			less.push(element);
+		} else if (element === pivot) {
+			equal.push(element);
+		} else {
+			greater.push(element);
+		}
+	}
+
+	return quickSort(less).concat(equal, quickSort(greater));
+}
+const array4 = [5, 2, 4, 6, 1, 3];
+console.log(quickSort(array4));
